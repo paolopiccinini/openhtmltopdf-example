@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		.right-align {
+			text-align: right;
+			font-size: 16px;
+		}
+
+		.table {
+			width: 100%;
+			text-align: justify;
+		}
+
+		.pdf-title {
+			font-size: 18px;
+		}
+
+		.text-table-header {
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		.text-values-table-header {
+			font-size: 16px;
+			font-weight: normal;
+		}
+
+		.text-ndg-details {
+			font-size: 14px;
+			font-weight: bold;
+		}
+
+		.text-ndg-values-details {
+			font-size: 14px;
+			font-weight: normal;
+		}
+
+		.questionnaire-type-title {
+			font-size: 14px;
+			font-weight: bold;
+		}
+
+		.question-text {
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		.question-answer-text {
+			font-size: 12px;
+			font-weight: normal;
+		}
+
+		.question-note-text {
+			font-size: 10px;
+			font-weight: normal;
+		}
+
+		.question-group-name-text {
+			font-size: 14px;
+			font-weight: normal;
+		}
+
+		hr {
+			border: 0;
+			height: 1px;
+			background: #333;
+			background-image: linear-gradient(to right, #ccc, #333, #ccc);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="right-align">
+		${label_pdf_headerTopLeft}
+	</div>
+	<span class="pdf-title">${label_pdf_title}</span>
+	<form>
+		<table class="table">
+			<tr>
+				<th><span class="text-table-header">${label_pdf_gor}</span></th>
+				<th>
+					<span class="text-values-table-header">${principalNdg.gor}</span>
+				</th>
+				<th><span class="text-table-header">${label_pdf_name}</span></th>
+				<th>
+					<span class="text-values-table-header">${principalNdg.gorName}</span>
+				</th>
+			</tr>
+			<tr>
+				<td colspan="2"></td>
+				<td><span class="text-values-table-header">${label_pdf_purpose}</span></td>
+				<td>
+					<span class="text-values-table-header">${principalNdg.gorName}</span>
+				</td>
+			</tr>
+		</table>
+		<table class="table">
+			<div>
+				<tr>
+					<th><span class="text-ndg-details">${label_pdf_ndg}</span></th>
+					<th><span class="text-ndg-values-details">${questionnaire.ndgDetails.externalNdg}</span></th>
+					<th><span class="text-ndg-details">${label_pdf_name}</span></th>
+					<th><span class="text-ndg-values-details">${questionnaire.ndgDetails.ndgName}</span></th>
+					<th><span class="text-ndg-details">${label_pdf_al1}</span></th>
+					<th><span class="text-ndg-values-details">${questionnaire.ndgDetails.newApprovalLimit1}</span>
+					</th>
+					<th><span class="text-ndg-details">${label_pdf_al2}</span></th>
+					<th><span class="text-ndg-values-details">${questionnaire.ndgDetails.newApprovalLimit2}</span>
+					</th>
+				</tr>
+				<tr>
+					<td colspan="8"><span class="questionnaire-type-title">${label_pdf_general}</span></td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<span class="question-text">
+							${qa.gbQuestionText}
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<span class="question-answer-text">
+							<input type="radio" name="name_single_${qa.id}_${questionnaire.ndgDetails.externalNdg}"
+								id="yes_${qa.id}_${questionnaire.ndgDetails.externalNdg}" checked readonly />
+							<label for="yes_${qa.id}_${questionnaire.ndgDetails.externalNdg}">${label_pdf_yes}</label>
+							<input type="radio" id="no_${qa.id}_${questionnaire.ndgDetails.externalNdg}"
+								name="name_single_${qa.id}_${questionnaire.ndgDetails.externalNdg}" readonly />
+							<label for="no_${qa.id}">${label_pdf_no}</label>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<span class="question-note-text">${qa.note}</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<hr>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8"><span class="questionnaire-type-title">${label_pdf_specific}</span></td>
+				</tr>
+				<tr>
+					<td colspan="8"><span class="question-group-name-text">${key}</span></td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<span class="question-text">
+							<input type="radio" name="name_${qa.id}_${questionnaire.ndgDetails.externalNdg}"
+								id="${qa.id}_${questionnaire.ndgDetails.externalNdg}" checked readonly />
+							<label for="${qa.id}_${questionnaire.ndgDetails.externalNdg}">
+								${qa.gbQuestionText}
+							</label>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<span class="question-note-text">${qa.note}</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<hr>
+					</td>
+				</tr>
+			</div>
+		</table>
+	</form>
+	<div>
+		${createDate}
+	</div>
+	<div class="right-align">
+		${userId} ${userName}
+	</div>
+</body>
+
+</html>
