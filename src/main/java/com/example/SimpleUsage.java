@@ -19,6 +19,7 @@ public class SimpleUsage {
             PdfRendererBuilder builder = new PdfRendererBuilder();
             builder.useFastMode();
             builder.withW3cDocument(html5ParseDocument("file:///C:/Users/p.piccinini/Documents/openhtmltopdf/in.html", 100), "file:///C:/Users/p.piccinini/Documents/openhtmltopdf/in.html");
+            //builder.withUri("file:///C:/Users/p.piccinini/Documents/openhtmltopdf/in2.html");
             builder.toStream(os);
             builder.run();
         }
